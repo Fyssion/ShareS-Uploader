@@ -1,2 +1,3 @@
 requests
 pyperclip
+win10toast >= 1.0 ; platform_system=="Windows"
