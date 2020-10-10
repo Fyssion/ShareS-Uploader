@@ -2,12 +2,12 @@ import sys
 import argparse
 import os.path
 import sys
+import subprocess
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
 
 import pyperclip
 
-import subprocess
 if sys.platform == "win32":
     import win10toast
     toaster = win10toast.ToastNotifier()
