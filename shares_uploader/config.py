@@ -86,6 +86,7 @@ class ConfigGUI(tk.Frame):
 
         self.config["UPLOADER"]["url"] = self.url.get()
         self.config["UPLOADER"]["key"] = self.key.get()
+        self.config.write()
 
         self.master.destroy()
 
