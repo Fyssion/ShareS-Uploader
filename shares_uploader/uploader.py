@@ -22,13 +22,13 @@ class Uploader:
     def __init__(self, config):
         self.config = config
         self.url = config["UPLOADER"]["url"]
-        self.password = config["UPLOADER"]["password"]
+        self.key = config["UPLOADER"]["key"]
 
     def upload(self, filepath):
         """Upload a file to the server"""
         url = self.url + "/api/files"
         headers = {"user-agent": "shares-uploader script"}
-        files = {"fdata": open(filepath, "rb"), "key": (None, self.password)}
+        files = {"fdata": open(filepath, "rb"), "key": (None, self.key)}
 
         response = requests.post(url, files=files, headers=headers)
 
