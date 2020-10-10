@@ -1,19 +1,27 @@
 import sys
 import argparse
 import os.path
+import sys
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
-import subprocess
 
 import pyperclip
+
+import subprocess
+if sys.platform == "win32":
+    import win10toast
+    toaster = win10toast.ToastNotifier()
 
 from .config import CONFIG_LOCATION, Config, ConfigGUI
 from .uploader import Uploader, HTTPException
 
 
 def notify(text, url=None):
-    url = f' "{url}"' if url else ""
-    subprocess.run(f'notify-send "{text}"{url} -a "shares-uploader"', shell=True)
+    if sys.platform == "win32":
+        toaster.show_toast(text, url, duration=10)
+    else:
+        url = f' "{url}"' if url else ""
+        subprocess.run(f'notify-send "{text}"{url} -a "shares-uploader"', shell=True)
 
 
 def start_config_gui(config):
